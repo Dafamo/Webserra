@@ -1149,7 +1149,29 @@ footer {
   .hero-content { left: 5%; right: 5%; }
   .hero-scroll-hint { display: none; }
 
+  /* Padding réduit sur mobile — 9rem (144px) trop lourd sur petit écran */
+  .section-intro    { padding: 4.5rem 5% 4rem; }
+  .section-projets  { padding: 4.5rem 0; }
+  .section-expertises { padding: 4.5rem 5%; }
+  .section-temoignages { padding: 4.5rem 5%; }
+  .section-projets .section-header { padding: 0 5% 3rem; }
+  .agence-valeurs   { padding: 4.5rem 5%; }
+  .agence-certifs   { padding: 4rem 5%; }
+  footer            { padding: 3.5rem 5% 2.5rem; }
+
   .agence-texte { padding: 4rem 5%; }
   .contact-info-col,
   .contact-form-col { padding: 4rem 5%; }
+}
+
+/* Respect du mouvement réduit (accessibilité WCAG AA) */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-img { transition: none; }
+  .projet-photo img,
+  .projet-card img { transition: none; }
 }
