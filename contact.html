@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Architecte à Vanves | 2AD Architecture</title>
+  <meta name="description" content="Contactez 2AD Architecture à Vanves (92170). Tél. 01 45 07 23 33 — agence@2ad.net. Du lundi au vendredi, 9h–18h." />
+  <link rel="canonical" href="https://www.2ad.net/contact.html" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://www.2ad.net/contact.html" />
+  <meta property="og:title"       content="Contact — 2AD Architecture, Vanves" />
+  <meta property="og:description" content="Parlons de votre projet. 01 45 07 23 33 — agence@2ad.net." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230F0F0F'/><text x='4' y='24' font-size='20' fill='%23F7F5F2' font-family='serif'>2A</text></svg>" />
+</head>
+
+<body>
+
+  <nav class="nav-sidebar" id="nav-sidebar" aria-label="Navigation principale">
+    <a href="index.html" class="nav-logo" aria-label="2AD Architecture — retour à l'accueil">
+      <span class="nav-logo-name">2AD</span>
+      <span class="nav-logo-sub">Architecture</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="projets.html">Projets</a></li>
+      <li><a href="agence.html">L'agence</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-footer">
+      <address>
+        <a href="tel:+33145072333">01 45 07 23 33</a>
+        <a href="mailto:agence@2ad.net">agence@2ad.net</a>
+        <p>25 rue de Solférino<br>92170 Vanves</p>
+      </address>
+    </div>
+  </nav>
+
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-sidebar" aria-label="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <main class="site-main">
+
+    <!-- PAGE HERO -->
+    <header class="page-hero">
+      <span class="label">Parlons de votre projet</span>
+      <h1>Contact</h1>
+    </header>
+
+    <!-- LAYOUT CONTACT -->
+    <div class="contact-layout">
+
+      <!-- COLONNE INFOS -->
+      <section class="contact-info-col" aria-labelledby="infos-titre">
+        <h2 id="infos-titre">Venez nous<br><em>rencontrer</em></h2>
+
+        <div class="contact-detail fade-in">
+          <strong>Téléphone</strong>
+          <a href="tel:+33145072333">01 45 07 23 33</a>
+        </div>
+
+        <div class="contact-detail fade-in fade-in-d1">
+          <strong>Email</strong>
+          <a href="mailto:agence@2ad.net">agence@2ad.net</a>
+        </div>
+
+        <div class="contact-detail fade-in fade-in-d2">
+          <strong>Adresse</strong>
+          <!-- NAP identique partout sur le site -->
+          <p>25 rue de Solférino<br>92170 Vanves</p>
+          <!-- Lien vers Google Maps — placeholder cliquable sans iframe de traçage -->
+          <a
+            href="https://maps.google.com/?q=25+rue+de+Solferino+92170+Vanves"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="map-link"
+            aria-label="Voir 2AD Architecture sur Google Maps (ouvre dans un nouvel onglet)"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Voir sur Google Maps
+          </a>
+        </div>
+
+        <div class="contact-detail fade-in">
+          <strong>Horaires d'ouverture</strong>
+          <!-- À VÉRIFIER avec le client — horaires indicatifs -->
+          <div class="horaires-table" role="list">
+            <span class="jour" role="listitem">Lundi – Vendredi</span>
+            <span class="heure">9h00 – 18h00</span>
+            <span class="jour" role="listitem">Samedi – Dimanche</span>
+            <span class="heure">Fermé</span>
+          </div>
+        </div>
+
+        <div class="contact-detail fade-in fade-in-d1">
+          <strong>Accès</strong>
+          <p>Métro : ligne 13, station Malakoff – Plateau de Vanves<br>
+          Bus : ligne 126, arrêt Solférino<br>
+          Parking : place de la République (Vanves)</p>
+        </div>
+      </section>
+
+      <!-- COLONNE FORMULAIRE -->
+      <section class="contact-form-col" aria-labelledby="form-titre">
+        <h2 id="form-titre">Nous écrire</h2>
+        <p class="form-note">
+          Réponse garantie sous 48 heures ouvrées.
+        </p>
+
+        <!--
+          INTÉGRATION EMAIL — À CONNECTER AVANT MISE EN LIGNE :
+          Option recommandée : Formspree (https://formspree.io)
+          → Remplacer action="#" par action="https://formspree.io/f/VOTRE_ID"
+          → Supprimer l'écouteur JS de soumission si Formspree gère la réponse nativement
+          Option B : Netlify Forms → ajouter attributs netlify et netlify-honeypot="website"
+        -->
+        <form
+          class="contact-form"
+          action="#"
+          method="POST"
+          novalidate
+          aria-label="Formulaire de contact 2AD Architecture"
+        >
+          <!-- Honeypot anti-spam — ne pas afficher à l'utilisateur -->
+          <div class="form-trap" aria-hidden="true">
+            <label for="website">Ne pas remplir ce champ</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prenom">Prénom <span aria-label="obligatoire">*</span></label>
+              <input
+                type="text"
+                id="prenom"
+                name="prenom"
+                placeholder="Marie"
+                autocomplete="given-name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom <span aria-label="obligatoire">*</span></label>
+              <input
+                type="text"
+                id="nom"
+                name="nom"
+                placeholder="Dupont"
+                autocomplete="family-name"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email <span aria-label="obligatoire">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="marie@example.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="telephone">Téléphone</label>
+              <input
+                type="tel"
+                id="telephone"
+                name="telephone"
+                placeholder="06 XX XX XX XX"
+                autocomplete="tel"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="type-projet">Type de projet <span aria-label="obligatoire">*</span></label>
+            <select id="type-projet" name="type-projet" required>
+              <option value="" disabled selected>Sélectionnez une catégorie</option>
+              <option value="logements-collectifs">Logements collectifs</option>
+              <option value="construction-neuve">Construction neuve</option>
+              <option value="restructuration">Restructuration / Réhabilitation</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Votre projet <span aria-label="obligatoire">*</span></label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Décrivez votre programme, localisation, calendrier souhaité…"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-footer">
+            <button type="submit" class="btn-primary">Envoyer le message</button>
+            <p class="form-legal">
+              En soumettant ce formulaire, vous acceptez que 2AD Architecture traite
+              vos données pour répondre à votre demande.
+              <a href="politique-confidentialite.html">Politique de confidentialité</a>
+            </p>
+          </div>
+
+          <div class="form-success" role="alert" aria-live="assertive">
+            <strong>Votre message a bien été envoyé.</strong><br>
+            2AD Architecture vous répondra sous 48 heures ouvrées.
+          </div>
+        </form>
+      </section>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>2AD Architecture</h3>
+        <p class="footer-tagline">Bâtir. Durer. Habiter.</p>
+        <p>Cabinet d'architecture fondé en 1984 à Vanves. Logements collectifs, construction neuve et restructuration en Île-de-France.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="agence.html">L'agence</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          <a href="tel:+33145072333">01 45 07 23 33</a>
+          <a href="mailto:agence@2ad.net">agence@2ad.net</a>
+          <span style="display:block;font-size:.82rem;line-height:1.9;color:var(--pierre)">25 rue de Solférino<br>92170 Vanves</span>
+        </address>
+      </div>
+      <div class="footer-col">
+        <h4>Légal</h4>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="politique-confidentialite.html">Confidentialité</a></li>
+          <li><a href="politique-cookies.html">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 2AD Architecture SELAS — Tous droits réservés</p>
+      <nav class="footer-legal" aria-label="Liens légaux">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="politique-confidentialite.html">Confidentialité</a>
+        <a href="politique-cookies.html">Cookies</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" role="dialog" aria-label="Gestion des cookies" aria-live="polite">
+    <p>Ce site utilise uniquement des cookies techniques nécessaires à son fonctionnement. <a href="politique-cookies.html">En savoir plus</a></p>
+    <div class="cookie-actions">
+      <button class="cookie-btn cookie-btn-accept">Accepter</button>
+      <button class="cookie-btn cookie-btn-refuse">Refuser</button>
+    </div>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
