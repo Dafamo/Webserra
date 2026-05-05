@@ -1,148 +1,82 @@
-/* ============================================================
-   2AD Architecture — main.js
-   ============================================================ */
+/* =========================================================
+   GAZELEC — main.js
+   Interactions minimales : nav mobile, fade-in scroll,
+   bandeau cookies (CNIL), formulaire contact.
+   ========================================================= */
 
 (function () {
   'use strict';
 
-  /* ── Scroll fade-in ── */
-  const fadeEls = document.querySelectorAll('.fade-in');
-  if (fadeEls.length) {
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          obs.unobserve(entry.target);
+  /* ---- Nav mobile toggle ---- */
+  var nav = document.querySelector('[data-nav]');
+  var toggle = document.querySelector('[data-nav-toggle]');
+  if (nav && toggle) {
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* ---- Fade-in au scroll ---- */
+  var fadeEls = document.querySelectorAll('.fade-in');
+  if ('IntersectionObserver' in window && fadeEls.length) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-in');
+          io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
-    fadeEls.forEach(el => obs.observe(el));
+    }, { threshold: 0.12 });
+    fadeEls.forEach(function (el) { io.observe(el); });
+  } else {
+    fadeEls.forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  /* ── Hero : animation d'entrée ── */
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    const img = hero.querySelector('.hero-img');
-    const activate = () => hero.classList.add('loaded');
-    if (img) {
-      img.complete ? activate() : img.addEventListener('load', activate);
-    }
-  }
+  /* ---- Cookie banner — CNIL : refus aussi simple que l'acceptation ---- */
+  var KEY = 'gazelec_cookie_choice';
+  var banner = document.querySelector('[data-cookie-banner]');
+  if (banner) {
+    var stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) {}
+    if (!stored) banner.classList.add('is-visible');
 
-  /* ── Navigation mobile ── */
-  const toggle  = document.querySelector('.nav-toggle');
-  const sidebar = document.querySelector('.nav-sidebar');
-
-  if (toggle && sidebar) {
-    toggle.addEventListener('click', () => {
-      const open = sidebar.classList.toggle('open');
-      toggle.classList.toggle('open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-
-    document.addEventListener('click', (e) => {
-      if (
-        sidebar.classList.contains('open') &&
-        !sidebar.contains(e.target) &&
-        !toggle.contains(e.target)
-      ) {
-        sidebar.classList.remove('open');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && sidebar.classList.contains('open')) {
-        sidebar.classList.remove('open');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-        toggle.focus();
-      }
+    banner.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-cookie-action]');
+      if (!btn) return;
+      try { localStorage.setItem(KEY, btn.dataset.cookieAction); } catch (err) {}
+      banner.classList.remove('is-visible');
     });
   }
 
-  /* ── Lien actif dans la nav ── */
-  const currentFile = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    const href = a.getAttribute('href');
-    if (href === currentFile || (currentFile === '' && href === 'index.html')) {
-      a.classList.add('active');
-      a.setAttribute('aria-current', 'page');
-    }
-  });
-
-  /* ── Bandeau cookies ── */
-  const banner       = document.querySelector('.cookie-banner');
-  const btnAccept    = document.querySelector('.cookie-btn-accept');
-  const btnRefuse    = document.querySelector('.cookie-btn-refuse');
-
-  function dismissBanner() {
-    if (!banner) return;
-    banner.classList.remove('visible');
-    setTimeout(() => banner.remove(), 520);
-  }
-
-  if (banner && !localStorage.getItem('2ad-cookies')) {
-    setTimeout(() => banner.classList.add('visible'), 1400);
-  }
-  btnAccept?.addEventListener('click', () => {
-    localStorage.setItem('2ad-cookies', 'accepted');
-    dismissBanner();
-  });
-  btnRefuse?.addEventListener('click', () => {
-    localStorage.setItem('2ad-cookies', 'refused');
-    dismissBanner();
-  });
-
-  /* ── Formulaire de contact ── */
-  const form = document.querySelector('.contact-form');
+  /* ---- Formulaire contact (demo, à brancher côté serveur) ---- */
+  var form = document.querySelector('[data-contact-form]');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
+      var status = form.querySelector('[data-form-status]');
+      var honey = form.querySelector('[name="website"]');
+      if (honey && honey.value) return; // bot detected
 
-      /* Honeypot anti-spam */
-      if (form.querySelector('[name="website"]')?.value) return;
-
-      /*
-        INTÉGRATION EMAIL — À CONNECTER :
-        Option A (recommandée) : Formspree → form action="https://formspree.io/f/VOTRE_ID"
-        Option B : Netlify Forms → ajouter netlify netlify-honeypot="website" sur <form>
-        Option C : Backend propre (PHP/Node) envoyant à agence@2ad.net
-      */
-
-      const success = document.querySelector('.form-success');
-      if (success) {
-        success.style.display = 'block';
-        form.reset();
-        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      // TODO: remplacer par un endpoint réel (Formspree, Netlify Forms, ou backend custom)
+      // qui envoie un email à contact@gazelec.fr
+      // Exemple : fetch('/api/contact', { method: 'POST', body: new FormData(form) })
+      if (status) {
+        status.textContent = 'Demande envoyée. Nous vous rappelons sous 24 h ouvrées.';
+        status.classList.remove('is-err');
+        status.classList.add('is-ok');
       }
+      form.reset();
     });
   }
 
-  /* ── Filtres projets ── */
-  const filtres = document.querySelectorAll('.filtre-btn');
-  const cards   = document.querySelectorAll('.projet-card');
-
-  if (filtres.length && cards.length) {
-    filtres.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filtres.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const cat = btn.dataset.filter;
-        cards.forEach(card => {
-          if (cat === 'tous' || card.dataset.cat === cat) {
-            card.removeAttribute('data-hidden');
-          } else {
-            card.setAttribute('data-hidden', 'true');
-          }
-        });
-      });
-    });
-  }
-
+  /* ---- Année courante footer ---- */
+  var year = document.querySelector('[data-year]');
+  if (year) year.textContent = new Date().getFullYear();
 })();
