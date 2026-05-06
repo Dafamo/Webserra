@@ -6,7 +6,7 @@
 
   <title>Contact & devis | Gazelec — Plombier à Vanves</title>
   <meta name="description" content="Demandez un devis ou un rendez-vous à Gazelec, plombier-chauffagiste à Vanves. Réponse sous 24 h ouvrées. Tél. 01 46 32 56 46." />
-  <link rel="canonical" href="https://www.gazelec-vanves.fr/contact.html" />
+  <link rel="canonical" href="https://gazelec-vanves.fr/contact.html" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Contact — Gazelec, plombier à Vanves" />
@@ -82,7 +82,7 @@
             </div>
             <div>
               <dt>Email</dt>
-              <dd><a href="mailto:contact@gazelec-vanves.fr">contact@gazelec-vanves.fr</a></dd>
+              <dd><a href="mailto:gazelec92@yahoo.fr">gazelec92@yahoo.fr</a></dd>
             </div>
             <div>
               <dt>Sur Google Maps</dt>
@@ -103,11 +103,25 @@
         </header>
 
         <!--
-          Formulaire de contact statique. À brancher sur un service d'envoi
-          (Formspree, Netlify Forms, ou backend custom) qui transmet l'email
-          à contact@gazelec-vanves.fr. Le honeypot "website" piège les bots.
+          Formulaire branché sur Netlify Forms.
+          - data-netlify="true" : Netlify intercepte le POST à la build.
+          - data-netlify-honeypot="bot-field" : champ piège invisible.
+          - Champ caché form-name : requis par Netlify pour identifier le form.
+          - Notifications email : à configurer côté dashboard Netlify
+            (Site → Forms → Settings → Form notifications → gazelec92@yahoo.fr).
+          - Redirection succès : /merci.html (page créée à part).
         -->
-        <form class="form fade-in" data-contact-form action="#" method="post" novalidate>
+        <form class="form fade-in"
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              action="/merci.html">
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="form__honey" aria-hidden="true">
+            <label>Ne pas remplir : <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
+
           <div class="form__row">
             <label>
               <span class="lbl">Nom *</span>
@@ -147,12 +161,6 @@
             <textarea name="message" required rows="6" placeholder="Marque et année de la chaudière si possible, symptômes, étage du logement, contraintes de planning…"></textarea>
           </label>
 
-          <!-- Honeypot anti-spam — invisible aux humains -->
-          <label class="form__honey" aria-hidden="true">
-            Site web (laisser vide)
-            <input type="text" name="website" tabindex="-1" autocomplete="off" />
-          </label>
-
           <label class="form__check">
             <input type="checkbox" name="rgpd" required />
             <span>J'accepte que mes données soient utilisées pour me recontacter au sujet de cette demande, conformément à la <a href="politique-confidentialite.html">politique de confidentialité</a>.</span>
@@ -161,8 +169,6 @@
           <div>
             <button type="submit" class="btn btn--primary">Envoyer la demande</button>
           </div>
-
-          <p class="form__status" data-form-status role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -182,7 +188,7 @@
           <h4>Contact</h4>
           <ul>
             <li><a href="tel:+33146325646">01 46 32 56 46</a></li>
-            <li><a href="mailto:contact@gazelec-vanves.fr">contact@gazelec-vanves.fr</a></li>
+            <li><a href="mailto:gazelec92@yahoo.fr">gazelec92@yahoo.fr</a></li>
             <li>50 rue Larmeroux<br />92170 Vanves</li>
           </ul>
         </div>

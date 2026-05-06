@@ -55,27 +55,6 @@
     });
   }
 
-  /* ---- Formulaire contact (demo, à brancher côté serveur) ---- */
-  var form = document.querySelector('[data-contact-form]');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var status = form.querySelector('[data-form-status]');
-      var honey = form.querySelector('[name="website"]');
-      if (honey && honey.value) return; // bot detected
-
-      // TODO: remplacer par un endpoint réel (Formspree, Netlify Forms, ou backend custom)
-      // qui envoie un email à contact@gazelec.fr
-      // Exemple : fetch('/api/contact', { method: 'POST', body: new FormData(form) })
-      if (status) {
-        status.textContent = 'Demande envoyée. Nous vous rappelons sous 24 h ouvrées.';
-        status.classList.remove('is-err');
-        status.classList.add('is-ok');
-      }
-      form.reset();
-    });
-  }
-
   /* ---- Année courante footer ---- */
   var year = document.querySelector('[data-year]');
   if (year) year.textContent = new Date().getFullYear();
